@@ -57,7 +57,7 @@ void setup() {
 void loop() {
 
     // put your main code here, to run repeatedly:
-    int dstartbutton=0;
+    int dstartbutton=21;
     int dmasterswitch=1;
     int doilpump=2;
     int dfuelpump=3;
@@ -105,28 +105,37 @@ void loop() {
 
           if(digitalRead(destop) == LOW) {
 
-              if(digitalRead(dstartbutton) == HIGH) {
+              attachInterrupt(digitalPinToInterrupt(dstartbutton),start,RISING)
+        else {
 
-                  Serial.print("Starting...");
+                  Serial.print("Emergency Stop is in affect");
+              }
 
-                  digitalWrite(doilpump,HIGH);
+          }
+    }
 
-                  if(analogRead(aoilpressure) >= 40) {
 
-                      if(analogRead(at5) <= 350) {
+ void start()
+    { Serial.print("Starting...");
 
-                          digitalWrite(dstartservo,HIGH);
-                          digitalWrite(dstarter,HIGH);
+    digitalWrite(doilpump,HIGH);
 
-                          while(ap4 > 15 || ap4 < 25) {
+          if(analogRead(aoilpressure) >= 40) {
 
-                              digitalWrite(dignitor,HIGH);
-                              delay(100);
-                              digitalWrite(dignitor,LOW);
-                              delay(100);
+              if(analogRead(at5) <= 350) {
+
+                  digitalWrite(dstartservo,HIGH);
+                  digitalWrite(dstarter,HIGH);
+
+                      while(ap4 > 15 || ap4 < 25) {
+
+                          digitalWrite(dignitor,HIGH);
+                          delay(100);
+                          digitalWrite(dignitor,LOW);
+                          delay(100);
                           }
 
-                          if(ap4 > 15) {
+                      if(ap4 > 15) {
 
                               digitalWrite(dfuelpump,HIGH);
                               digitalWrite(dfuel1,HIGH);
@@ -146,11 +155,4 @@ void loop() {
               }
 
 
-              else {
-
-                  Serial.print("Emergency Stop is in affect");
-              }
-
-          }
-    }
-}
+              
