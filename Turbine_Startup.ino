@@ -34,23 +34,7 @@ void setup() {
     ap4=(analogRead(ap4)/.008);
     ap5=(analogRead(ap5)/.008);
 
-    pinMode(dstartbutton,INPUT);
-    Serial.begin(9600);
-    Serial.print(analogRead(ap1));
-    Serial.print(analogRead(ap2));
-    Serial.print(analogRead(ap3));
-    Serial.print(analogRead(ap4));
-    Serial.print(analogRead(ap5));
 
-    Serial.print(analogRead(at1));
-    Serial.print(analogRead(at2));
-    Serial.print(analogRead(at3));
-    Serial.print(analogRead(at4));
-    Serial.print(analogRead(at5));
-    Serial.print(analogRead(aoiltemperature));
-    Serial.print(analogRead(afueltemperature));
-    Serial.print(analogRead(amassflow));
-    Serial.print(analogRead(aoxysensor));
 
 }
 
