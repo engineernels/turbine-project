@@ -74,69 +74,7 @@ void loop() {
     at3=((analogRead(at3)-1.25)/.005);
     at4=((analogRead(at4)-1.25)/.005);
     at5=((analogRead(at5)-1.25)/.005);
-    ap1=(analogRead(ap1)/.008);
-    ap2=(analogRead(ap2)/.008);
-    ap3=(analogRead(ap3)/.008);
-    ap4=(analogRead(ap4)/.008);
-    ap5=(analogRead(ap5)/.008);
 
-    //starting procedure assumptions are: 
-    //ignition happens between 15 and 25 psi in the combustor
-    //oil pressure of 40 psi and higher must always be maintained
-    //starter must run until engine reaches 300 degrees celcius
-
-      while(digitalRead(dmasterswitch) == HIGH) {
-
-          if(digitalRead(destop) == LOW) {
-
-              attachInterrupt(digitalPinToInterrupt(dstartbutton),start,RISING)
-        else {
-
-                  Serial.print("Emergency Stop is in affect");
-              }
-
-          }
-    }
-
-
- void start()
-    { Serial.print("Starting...");
-
-    digitalWrite(doilpump,HIGH);
-
-          if(analogRead(aoilpressure) >= 40) {
-
-              if(analogRead(at5) <= 350) {
-
-                  digitalWrite(dstartservo,HIGH);
-                  digitalWrite(dstarter,HIGH);
-
-                      while(ap4 > 15 || ap4 < 25) {
-
-                          digitalWrite(dignitor,HIGH);
-                          delay(100);
-                          digitalWrite(dignitor,LOW);
-                          delay(100);
-                          }
-
-                      if(ap4 > 15) {
-
-                              digitalWrite(dfuelpump,HIGH);
-                              digitalWrite(dfuel1,HIGH);
-                              analogWrite(afuelcontrol,10);
-                          }
-                      }
-
-                      if(at5>=400){
-
-                          digitalWrite(dfuel2,HIGH);
-                          digitalWrite(dfuel1,LOW);
-
-                        }
-
-                      Serial.print("Engine is running and waiting for steady state");
-                  }
-              }
 
 
               
